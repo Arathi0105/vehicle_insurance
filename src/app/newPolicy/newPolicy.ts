@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './newPolicy.html',
   styleUrls: ['./newPolicy.css'],
 })
-export class App {
+export class NewPolicy {
   form: any = {
     vehicleNo: '',
     customerName: '',

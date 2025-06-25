@@ -1,7 +1,6 @@
 * {
-    margin: 50;
+    margin: 0;
     padding: 0;
-    /* box-sizing: border-box; */
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
@@ -13,7 +12,7 @@
     position: sticky;
     top: 0;
     z-index: 999;
-    width: 100%;
+    height: 5rem;
 }
 
 .nav-container {
@@ -75,7 +74,6 @@
     }
 }
 
-
 /* Heading style */
 .animated-heading {
     text-align: center;
@@ -108,7 +106,8 @@
 
 .form-row {
     display: flex;
-    gap: 1.5rem;
+    gap: 3rem;
+    margin-right: 2rem;
     flex-wrap: wrap;
 }
 
@@ -129,28 +128,37 @@ label {
     font-size: 12px;
 }
 
-.input-line input,
-.input-line select {
+/* Updated input and select styles */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
     width: 100%;
-    padding: 0.5rem;
+    padding: 12px 15px;
+    font-size: 16px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
     transition: border-color 0.3s ease;
 }
 
-.input-line input:focus,
-.input-line select:focus {
+input:focus,
+select:focus {
     outline: none;
     border-color: #004b8d;
 }
 
 /* Button style */
+button {
+    width: 20rem;
+}
 .btn {
     background-color: #004b8d;
     color: white;
     padding: 0.7rem 1.5rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     transition: background 0.3s ease;
     font-size: 16px;
@@ -169,57 +177,61 @@ label {
 
 /* Underwriter input specific width */
 #underwriterId {
-    width: 48.42%;
+    width: 100%; /* Changed to full width for consistency */
+}
+
+#insuranceType {
+    width: 104%; /* Changed to full width for consistency */
 }
 
 .popup-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6); /* semi-transparent background */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
 
 .popup-box {
-  background-color: #fff;
-  padding: 20px 30px;
-  border-radius: 12px;
-  text-align: center;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-  animation: zoomIn 0.3s ease;
+    background-color: #fff;
+    padding: 20px 30px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    animation: zoomIn 0.3s ease;
 }
 
 .popup-box img {
-  width: 120px;
-  margin-bottom: 10px;
+    width: 120px;
+    margin-bottom: 10px;
 }
 
 .popup-box p {
-  font-size: 18px;
-  margin-bottom: 10px;
+    font-size: 18px;
+    margin-bottom: 10px;
 }
 
 .popup-box button {
-  background-color: #ff5c5c;
-  color: #fff;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+    background-color: #ff5c5c;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
 }
 
 @keyframes zoomIn {
-  from {
-    transform: scale(0.7);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
+    from {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }

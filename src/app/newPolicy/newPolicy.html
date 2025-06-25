@@ -52,6 +52,18 @@
         </div>
 
         <div class="form-row">
+        <div class="form-field-row">
+            <label for="insuranceType">Insurance Type</label>
+            <select id="insuranceType" [(ngModel)]="form.insuranceType" (ngModelChange)="validateForm()" name="insuranceType">
+                <option value="" disabled selected>Select Insurance Type</option>
+                <option value="full">Full Type</option>
+                <option value="third-party">Third Party</option>
+            </select>
+            <div class="error-message" *ngIf="errors['insuranceType']">{{ errors['insuranceType'] }}</div>
+        </div>
+        </div>
+
+        <div class="form-row">
           <div class="form-field-row">
             <label for="phoneNo">Phone Number</label>
             <input type="text" id="phoneNo" [(ngModel)]="form.phoneNo" (ngModelChange)="validateForm()" name="phoneNo" />

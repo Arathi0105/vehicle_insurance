@@ -7,7 +7,7 @@
       </a>
       <ul class="nav-links">
         <li><a routerLink="/" routerLinkActive="active">New Policy</a></li>
-        <li><a href="#" (click)="showRenewModal = true; $event.preventDefault();">Renew Policy</a></li>
+        <!-- <li><a href="#" (click)="showRenewModal = true; $event.preventDefault();">Renew Policy</a></li> -->
       </ul>
       <div class="user-avatar">
         <img src="assets/images/verified.gif" alt="User Avatar" />
@@ -19,25 +19,59 @@
 
 <!-- Dashboard Content -->
 <div class="dashboard-container">
-  <h2 class="dashboard-heading">Welcome back, <span class="user-highlight">Underwriter</span>!</h2>
-  <div class="dashboard-stats">
-    <div class="stat-card">
-      <h3>Total Policies</h3>
-      <p>--</p>
-    </div>
-    <div class="stat-card">
-      <h3>Pending Approvals</h3>
-      <p>--</p>
-    </div>
-    <div class="stat-card">
-      <h3>Approved Policies</h3>
-      <p>--</p>
+  <h2 class="dashboard-heading">Underwriter Dashboard</h2>
+
+  <div class="form-group">
+    <label for="underwriterSelect">Select Underwriter:</label>
+    <select id="underwriterSelect" [(ngModel)]="selectedUnderwriterId" (change)="onUnderwriterChange()" [disabled]="loadingUnderwriters">
+      <option value="">-- Choose Underwriter --</option>
+      <option *ngFor="let u of underwriters" [value]="u.underwriterId">{{u.name}} ({{u.underwriterId}})</option>
+    </select>
+    <div *ngIf="loadingUnderwriters" style="margin-top: 0.5rem; color: #004b8d; font-size: 0.9rem;">
+      Loading underwriters...
     </div>
   </div>
-  <div class="dashboard-actions">
-    <button class="btn">View All Policies</button>
-    <button class="btn">Review Pending</button>
+
+  <div *ngIf="loadingPolicies" class="loading-state">
+    <div>Loading policies...</div>
   </div>
+  
+  <div *ngIf="!loadingPolicies && selectedUnderwriterId && policies.length === 0" class="empty-state">
+    <div>No policies found for this underwriter.</div>
+  </div>
+
+  <table *ngIf="policies.length > 0" class="policy-table">
+    <thead>
+      <tr>
+        <th>Policy No</th>
+        <th>Vehicle No</th>
+        <th>Vehicle Type</th>
+        <th>Customer Name</th>
+        <th>Phone</th>
+        <th>Type</th>
+        <th>Premium</th>
+        <th>From</th>
+        <th>To</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of policies">
+        <td><strong>{{p.policyNo}}</strong></td>
+        <td>{{p.vehicleNo}}</td>
+        <td>{{p.vehicleType}}</td>
+        <td>{{p.customerName}}</td>
+        <td>{{p.phoneNo}}</td>
+        <td>
+          <span class="policy-type" [ngClass]="p.type.toLowerCase().includes('full') ? 'full' : 'third-party'">
+            {{p.type}}
+          </span>
+        </td>
+        <td class="premium-amount">₹{{p.premiumAmt}}</td>
+        <td class="date-cell">{{p.fromDate | date:'dd/MM/yyyy'}}</td>
+        <td class="date-cell">{{p.toDate | date:'dd/MM/yyyy'}}</td>
+      </tr>
+    </tbody>
+  </table>
 
   <!-- Renew Policy Modal -->
   <div class="modal-overlay" *ngIf="showRenewModal">

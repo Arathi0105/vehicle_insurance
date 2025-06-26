@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -31,7 +32,7 @@ export class NewPolicy implements OnInit {
   showFail = false;
   underwriters: any[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.http.get<any[]>('http://localhost:8080/api/underwriters').subscribe(data => {
@@ -102,6 +103,7 @@ export class NewPolicy implements OnInit {
     if (!valid) {
       this.showSuccess = false;
       this.showFail = true;
+      this.cdr.detectChanges();
       return;
     }
     // Map insuranceType to backend expected value
@@ -120,10 +122,12 @@ export class NewPolicy implements OnInit {
       next: (res) => {
         this.showSuccess = true;
         this.showFail = false;
+        this.cdr.detectChanges();
       },
       error: (err) => {
         this.showSuccess = false;
         this.showFail = true;
+        this.cdr.detectChanges();
       }
     });
   }

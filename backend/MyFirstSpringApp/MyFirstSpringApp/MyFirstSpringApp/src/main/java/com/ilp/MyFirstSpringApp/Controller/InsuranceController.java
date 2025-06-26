@@ -27,4 +27,9 @@ public class InsuranceController {
     public List<Insurance> getAllInsurance(){
         return insuranceRepo.findAll();
     }
+    
+    @GetMapping("/by-underwriter/{underwriterId}")
+    public List<Insurance> getByUnderwriter(@PathVariable String underwriterId) {
+        return insuranceRepo.findByUnderwriter_UnderwriterId(underwriterId);
+    }
 }

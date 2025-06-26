@@ -1,16 +1,18 @@
 <!-- Navigation Bar -->
+<div class="navbar-fullwidth">
 <nav>
   <div class="navbar nav-container">
-    <a href="#" style="text-decoration: none;" class="logo">
+      <a routerLink="/" style="text-decoration: none;" class="logo">
       <h3>Star Protect Vehicle System</h3>
     </a>
     <ul class="nav-links">
       <li>
-        <a href="uwDashboard.html">Underwriter Dashboard</a>
+          <a routerLink="/dashboard" routerLinkActive="active">Underwriter Dashboard</a>
       </li>
     </ul>
   </div>
 </nav>
+</div>
 
 
 <!-- Heading -->
@@ -29,7 +31,18 @@
             <input type="text" id="vehicleNo" [(ngModel)]="form.vehicleNo" (ngModelChange)="validateForm()" name="vehicleNo" />
             <div class="error-message" *ngIf="errors['vehicleNo']">{{ errors['vehicleNo'] }}</div>
           </div>
+          <div class="form-field-row">
+            <label for="vehicleType">Vehicle Type</label>
+            <select id="vehicleType" [(ngModel)]="form.vehicleType" name="vehicleType" (ngModelChange)="validateForm()">
+              <option value="" disabled selected>Select Vehicle Type</option>
+              <option value="2 Wheeler">2 Wheeler</option>
+              <option value="4 Wheeler">4 Wheeler</option>
+            </select>
+            <div class="error-message" *ngIf="errors['vehicleType']">{{ errors['vehicleType'] }}</div>
+          </div>
+        </div>
 
+        <div class="form-row">
           <div class="form-field-row">
             <label for="customerName">Customer Name</label>
             <input type="text" id="customerName" [(ngModel)]="form.customerName" (ngModelChange)="validateForm()" name="customerName" />
@@ -92,9 +105,13 @@
 
         <div class="form-row">
           <div class="form-field-row">
-            <label for="underwriterId">Underwriter ID</label>
-            <input type="text" id="underwriterId" [(ngModel)]="form.underwriterId" (ngModelChange)="validateForm()" name="underwriterId" />
+            <label for="underwriterId">Underwriter</label>
+            <select id="underwriterId" [(ngModel)]="form.underwriterId" name="underwriterId" (ngModelChange)="validateForm()">
+              <option [ngValue]="''" disabled>Select Underwriter</option>
+              <option *ngFor="let uw of underwriters" [ngValue]="uw.underwriterId">{{ uw.underwriterId }} - {{ uw.name }}</option>
+            </select>
             <div class="error-message" *ngIf="errors['underwriterId']">{{ errors['underwriterId'] }}</div>
+            <div class="error-message" *ngIf="underwriters.length === 0">No underwriters available. Please add one first.</div>
           </div>
         </div>
 

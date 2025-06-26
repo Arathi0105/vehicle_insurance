@@ -3,3 +3,262 @@
     padding: 0;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+
+/* Navbar styles */
+.navbar {
+  background-color: #004b8d;
+  padding: 1rem 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  height: 5rem;
+  width: 100vw;
+  left: 0;
+  right: 0;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+}
+
+.navbar-fullwidth {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  background: #004b8d;
+  z-index: 1000;
+}
+
+.nav-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  color: white;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: white;
+  white-space: nowrap;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 0;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.7rem 1.5rem;
+  border-radius: 6px;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  outline: none;
+  box-shadow: none;
+  font-size: 1rem;
+  display: inline-block;
+}
+
+.nav-links li a.active, .nav-links li a:hover {
+  background-color: #fff;
+  color: #004b8d;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  text-decoration: none;
+}
+
+.user-avatar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.user-avatar img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  object-fit: cover;
+}
+.user-name {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* Responsive navbar */
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    gap: 1rem;
+  }
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+  }
+  .nav-links li a {
+    width: 100%;
+    display: block;
+  }
+  .user-avatar {
+    margin-top: 1rem;
+  }
+}
+
+/* Dashboard-specific styles */
+.dashboard-container {
+  margin: 3rem auto;
+  max-width: 900px;
+  background: #f8f4f4;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.08);
+}
+
+.dashboard-heading {
+  text-align: center;
+  color: #004b8d;
+  margin-bottom: 2rem;
+}
+
+.user-highlight {
+  color: #003366;
+  font-weight: bold;
+}
+
+.dashboard-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 2rem;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  padding: 1.5rem 2rem;
+  text-align: center;
+  min-width: 180px;
+}
+
+.stat-card h3 {
+  color: #004b8d;
+  margin-bottom: 0.5rem;
+}
+
+.stat-card p {
+  font-size: 2rem;
+  color: #333;
+  margin: 0;
+}
+
+.dashboard-actions {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.btn {
+  background-color: #004b8d;
+  color: white;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-size: 16px;
+}
+
+.btn:hover {
+  background-color: #003366;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard-stats {
+    flex-direction: column;
+    align-items: center;
+  }
+  .dashboard-actions {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.modal-box {
+  background: #fff;
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  min-width: 320px;
+  max-width: 90vw;
+  text-align: left;
+}
+
+.modal-box h3 {
+  margin-top: 0;
+  color: #004b8d;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.form-group input[type="text"],
+.form-group input[type="date"] {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.btn-cancel {
+  background: #ccc;
+  color: #222;
+}
+
+.btn-cancel:hover {
+  background: #bbb;
+}

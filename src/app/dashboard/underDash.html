@@ -1,1 +1,62 @@
-<h1>Hello World!</h1>
+<!-- Navigation Bar -->
+<div class="navbar-fullwidth">
+  <nav>
+    <div class="navbar nav-container">
+      <a routerLink="/" style="text-decoration: none;" class="logo">
+        <h3>Star Protect</h3>
+      </a>
+      <ul class="nav-links">
+        <li><a routerLink="/" routerLinkActive="active">New Policy</a></li>
+        <li><a href="#" (click)="showRenewModal = true; $event.preventDefault();">Renew Policy</a></li>
+      </ul>
+      <div class="user-avatar">
+        <img src="assets/images/verified.gif" alt="User Avatar" />
+        <span class="user-name">Underwriter</span>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<!-- Dashboard Content -->
+<div class="dashboard-container">
+  <h2 class="dashboard-heading">Welcome back, <span class="user-highlight">Underwriter</span>!</h2>
+  <div class="dashboard-stats">
+    <div class="stat-card">
+      <h3>Total Policies</h3>
+      <p>--</p>
+    </div>
+    <div class="stat-card">
+      <h3>Pending Approvals</h3>
+      <p>--</p>
+    </div>
+    <div class="stat-card">
+      <h3>Approved Policies</h3>
+      <p>--</p>
+    </div>
+  </div>
+  <div class="dashboard-actions">
+    <button class="btn">View All Policies</button>
+    <button class="btn">Review Pending</button>
+  </div>
+
+  <!-- Renew Policy Modal -->
+  <div class="modal-overlay" *ngIf="showRenewModal">
+    <div class="modal-box">
+      <h3>Renew Policy</h3>
+      <form (ngSubmit)="submitRenewal()" #renewForm="ngForm">
+        <div class="form-group">
+          <label for="policyNo">Policy Number</label>
+          <input id="policyNo" name="policyNo" [(ngModel)]="renewFormData.policyNo" required />
+        </div>
+        <div class="form-group">
+          <label for="renewDate">Renewal Date</label>
+          <input id="renewDate" name="renewDate" type="date" [(ngModel)]="renewFormData.renewDate" required />
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-cancel" (click)="showRenewModal = false">Cancel</button>
+          <button type="submit" class="btn">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
